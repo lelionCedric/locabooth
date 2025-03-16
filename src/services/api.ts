@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {Reservation} from "../hooks/useReservations.ts";
-import {Demande} from "../hooks/useDemande.ts";
+import {FormDemande} from "../hooks/useDemande.ts";
 
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_BASE_URL, // Remplace par ton URL backend
@@ -27,7 +27,7 @@ export const fetchDates = async (month: number, year: number): Promise<Reservati
 
 
 
-export const sendDemande = async (demande: Demande) => {
+export const sendDemande = async (demande: FormDemande) => {
     try {
         const response = await api.post("/api/demande", demande);
         return response.data;

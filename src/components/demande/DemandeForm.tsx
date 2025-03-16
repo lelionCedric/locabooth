@@ -1,6 +1,32 @@
-import { useState } from 'react';
 import './DemandeForm.css';
-import useDemande from "../../hooks/useDemande.ts"; // Import du fichier CSS dédié
+import useDemande, {Demande} from "../../hooks/useDemande.ts"; // Import du fichier CSS dédié
+import {yupResolver} from '@hookform/resolvers/yup';
+import * as Yup from "yup";
+import {useForm} from "react-hook-form"
+
+const validationSchema = Yup.object().shape({
+    nom: Yup.string()
+        .required("Ce champ est obligatoire"),
+    prenom: Yup.string()
+        .required("Ce champ est obligatoire"),
+    mail: Yup.string()
+        .email("email invalide")
+        .matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+            'Le format du mail est invalide'
+        )
+        .required("L'email est obligatoire"),
+    telephone: Yup.string()
+        .required("Ce champ est obligatoire")
+        .matches(
+            /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/,
+            'Le format du numéro de téléphone est invalide, ex: 01-34-56-78-90'
+        ),
+    description: Yup.string()
+        .required("Ce champ est obligatoire"),
+    jour : Yup.number(),
+    mois : Yup.number(),
+    annee : Yup.number(),
+});
 
 interface DemandeFormProps {
     jour: number;
@@ -12,51 +38,38 @@ interface DemandeFormProps {
 }
 
 // Le composant principal qui prend jour, mois et année comme props
-const DemandeForm = ({ jour, mois, annee, isOpen, handleCloseModal, currentDate} : DemandeFormProps) => {
+const DemandeForm = ({jour, mois, annee, isOpen, handleCloseModal, currentDate}: DemandeFormProps) => {
 
-    // État pour les données du formulaire
-    const [formData, setFormData] = useState({
-        nom: '',
-        prenom: '',
-        description: '',
-        telephone: '',
-        mail: '',
-        jour: undefined,
-        mois: undefined,
-        annee: undefined,
+    const {register, handleSubmit, formState, reset} = useForm({
+        mode: "onBlur",
+        defaultValues: {
+            nom: "",
+            prenom: "",
+            mail: "",
+            telephone: "",
+            description: "",
+        },
+        resolver: yupResolver(validationSchema),
     });
 
-    const { mutate, isLoading, isSuccess } = useDemande()
+    const {errors} = formState;
 
-    // Gérer les changements dans les champs du formulaire
-    const handleChange = (e: { target: { name: string; value: string; }; }) => {
-        const { name, value } = e.target;
-        setFormData(prevData => ({
-            ...prevData,
-            [name]: value
-        }));
-    };
+    const {mutate, isLoading, isSuccess} = useDemande()
 
     // Gérer la soumission du formulaire
-    const handleSubmit = (e: { preventDefault: () => void; }) => {
-        e.preventDefault();
-
+    const onSubmit = (data: Demande) => {
         // Afficher les données du formulaire et les paramètres reçus
         mutate(
             {
-                nom: formData.nom,
-                prenom: formData.prenom,
-                description: formData.description,
-                mail: formData.mail,
-                telephone: formData.telephone,
-                jour,
+                ...data,
+                jour: jour,
                 mois: currentDate.getMonth(),
-                annee
+                annee: annee
             }
         );
         // Fermer la modal après soumission
-
         handleCloseModal();
+        reset();
     };
 
     return (
@@ -90,18 +103,19 @@ const DemandeForm = ({ jour, mois, annee, isOpen, handleCloseModal, currentDate}
                             {/* Corps de la modal */}
                             {!isSuccess && !isLoading?
                                 <div className="modal-body">
-                                    <form onSubmit={handleSubmit}>
+                                    <form onSubmit={handleSubmit(onSubmit)}>
                                         <div className="form-group">
                                             <label htmlFor="nom">Nom</label>
                                             <input
                                                 type="text"
                                                 id="nom"
-                                                name="nom"
-                                                value={formData.nom}
-                                                onChange={handleChange}
                                                 className="form-input"
                                                 required={true}
+                                                {...register("nom")}
                                             />
+                                            <small className="text-danger">
+                                                {errors.nom?.message}
+                                            </small>
                                         </div>
 
                                         <div className="form-group">
@@ -109,50 +123,55 @@ const DemandeForm = ({ jour, mois, annee, isOpen, handleCloseModal, currentDate}
                                             <input
                                                 type="text"
                                                 id="prenom"
-                                                name="prenom"
-                                                value={formData.prenom}
-                                                onChange={handleChange}
                                                 className="form-input"
                                                 required={true}
+                                                {...register("prenom")}
                                             />
+                                            <small className="text-danger">
+                                                {errors.prenom?.message}
+                                            </small>
                                         </div>
 
                                         <div className="form-group">
-                                            <label htmlFor="prenom">Numéro de téléphone</label>
+                                            <label htmlFor="telephone">Numéro de téléphone</label>
                                             <input
                                                 type="text"
                                                 id="telephone"
-                                                name="telephone"
-                                                value={formData.telephone}
-                                                onChange={handleChange}
                                                 className="form-input"
                                                 required={true}
+                                                {...register("telephone")}
                                             />
+                                            <small className="text-danger">
+                                                {errors.telephone?.message}
+                                            </small>
                                         </div>
 
                                         <div className="form-group">
-                                            <label htmlFor="prenom">Adresse Mail</label>
+                                            <label htmlFor="mail">Adresse Mail</label>
                                             <input
                                                 type="email"
                                                 id="mail"
-                                                name="mail"
-                                                value={formData.mail}
-                                                onChange={handleChange}
                                                 className="form-input"
                                                 required={true}
+                                                {...register("mail")}
                                             />
+                                            <small className="text-danger">
+                                                {errors.mail?.message}
+                                            </small>
                                         </div>
 
                                         <div className="form-group">
                                             <label htmlFor="description">Description</label>
                                             <textarea
                                                 id="description"
-                                                name="description"
-                                                value={formData.description}
-                                                onChange={handleChange}
                                                 className="form-textarea"
                                                 required={true}
+                                                {...register("description")}
                                             />
+
+                                            <small className="text-danger">
+                                                {errors.description?.message}
+                                            </small>
                                         </div>
 
                                         <div className="form-actions">

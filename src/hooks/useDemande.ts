@@ -2,6 +2,12 @@ import {sendDemande} from "../services/api";
 import {useMutation} from "react-query";
 import {useNotification} from "../shared/components/notification/notification.tsx"; // Appel API
 
+export interface FormDemande extends Demande{
+    jour: number;
+    mois: number;
+    annee: number;
+}
+
 // Définition du type pour les objets retournés par l'API
 export interface Demande{
     nom: string;
@@ -9,9 +15,6 @@ export interface Demande{
     description: string;
     mail: string;
     telephone: string;
-    jour: number;
-    mois: number;
-    annee: number;
 }
 
 const useDemande = () => {
