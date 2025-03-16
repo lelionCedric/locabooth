@@ -1,0 +1,39 @@
+.notification-container {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.notification {
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+}
+
+.notification.success {
+    background-color: #22c55e; /* Vert */
+}
+
+.notification.error {
+    background-color: #ef4444; /* Rouge */
+}
+
+.close-button {
+    margin-left: 1rem;
+    color: white;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: #e5e7eb; /* Gris clair */
+}

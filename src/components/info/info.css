@@ -1,0 +1,36 @@
+.overlay-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    max-width: 50%;
+}
+
+.text-overlay {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 1);
+    backdrop-filter: blur(3px);
+}
+
+.overlay-title {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.overlay-description {
+    font-size: 0.75rem;
+    line-height: 1.6;
+
+}
+
+@media screen and (max-width: 1150px){
+    .overlay-container{
+        max-width: none;
+    }
+}

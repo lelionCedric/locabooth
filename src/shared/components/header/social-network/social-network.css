@@ -1,0 +1,10 @@
+.list__social_icon {
+
+    flex: fit-content;
+    right: 0;
+    text-align: right;
+}
+
+a {
+    margin: 0.25rem;
+}

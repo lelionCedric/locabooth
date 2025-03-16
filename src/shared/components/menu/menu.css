@@ -1,0 +1,112 @@
+.menu {
+    position: relative;
+    background-color: transparent;
+    z-index: var(--z-fixed);
+    padding: 0.25rem 1rem;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    height: var(--header-height);
+}
+.nav__toggle,
+.nav__close {
+    font-size: 1.5rem;
+    color: var(--title-color);
+    cursor: pointer;
+}
+
+.nav__cta {
+    background-color: var(--first-color);
+    color: var(--title-color);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    padding: 0.75rem 1.5rem;
+}
+.nav__list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2.5rem;
+}
+
+.nav__link {
+    color: var(--title-color);
+    font-weight: var(--font-semi-bold);
+    transition: color 0.4s;
+}
+
+.nav__link:hover {
+    color: var(--first-color);
+}
+
+.nav__close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+}
+
+.show-menu {
+    left: 20%;
+}
+
+.current_menu{
+    color: var(--first-color);
+}
+
+@media screen and (max-width: 1150px) {
+    .nav__menu {
+        position: fixed;
+        top: 0;
+        right: -130%;
+        width: 80%;
+        height: 100%;
+        padding: 6rem;
+        transition: right 1s;
+        background-color: hsla(0, 0%, 6%, 0.2);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+    }
+    .menu{
+        justify-content: right;
+    }
+    .current__menu{
+        color: var(--first-color);
+        position: absolute;
+
+        font-weight: var(--font-semi-bold);
+        left: 45%;
+    }
+}
+
+@media screen and (min-width: 1150px) {
+
+    .current__menu{
+        display: none;
+    }
+    .nav {
+        height: calc(var(--header-height) + 1rem);
+
+    }
+    .nav__toggle,
+    .nav__close {
+        display: none;
+    }
+
+
+    .nav__list {
+        flex-direction: row;
+        column-gap: 2.5rem;
+    }
+}
+
+.visible-menu {
+    display: none;
+}

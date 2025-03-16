@@ -1,0 +1,76 @@
+DEPLOY FROM SKRATCH EC2
+1 - connection au hub docker registry
+    docker login -u <user> -p <password>
+
+2 - build docker image
+    docker build -t cedriclelion/locabooth:<version> .
+
+3 - push sur le registry
+    docker push cedriclelion/locabooth:<version>
+
+4 - créer un nouvelle instance EC2 ubuntu
+5 - installer docker avec le script suivant
+
+    vi docker.sh
+
+    # Add Docker's official GPG key:
+    sudo apt-get update
+    sudo apt-get install ca-certificates curl gnupg
+    sudo install -m 0755 -d /etc/apt/keyrings
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+    # Add the repository to Apt sources:
+    echo \
+      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+      $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+      sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    sudo apt-get update
+
+    chmod +x docker.sh
+
+6 - sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-compose
+7 - ajouter docker au user autre que le sudo
+
+    sudo usermod -aG docker $USER  #this adds the current to the docker group.
+    newgrp docker #activate the changes to groups
+
+8 - activer docker et demarer les container auto
+    sudo systemctl enable docker.service
+    sudo systemctl enable containerd.service
+
+9 - deposer le docker-compose.yml et le nginx.conf sur l'instance EC2
+    docker-compose.yml dans /home
+    nginx.conf dans /home/nginx/conf/
+10 - demarrer les container
+    docker compose up -d
+11 - verifier que les container applicatif est démarré
+    docker ps
+12 - ajouter les conf https SSL
+    docker compose run --rm  certbot certonly --webroot --webroot-path /var/www/certbot/ --dry-run -d <nom_domaine>
+
+    /!\ attention il faut que le fournisseur de domaine soit configuré pour être redirect vers l'instance EC2 ip puclic
+
+
+POINT D'ATTENTION
+
+- l'instance EC2 doit être configuré en accès HTTP et HTTPS
+
+- si la génération du certificat et clef ne fonctionne pas -> vérifier que le container principal est bien started et pas en mode reboot
+    pour ça ne garder dans la conf nginx que le bloc server 80 ->
+server {
+      listen 80;
+      ...
+}
+    remettre la conf 443 après la génération des fichiers SSL
+
+- les certificats sont envoyé sur l'instance EC2 dans certbot/conf/
+  les restrictions d'accès peuvent bloquer l'accès et le demarrage du container principal
+  pour corriger donne l'accès en lecture sur certbot/conf/live/<nomdomaine> certbot/conf/archive/<nomdomaine>
+
+  vérifier les logs du container principale pour détéecter les problèmes de permission
+
+  docker logs <id_container>
+
+RENOUVELLEMNT DU CERTIFICAT
+docker compose run --rm certbot renew

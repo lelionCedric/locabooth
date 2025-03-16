@@ -1,0 +1,88 @@
+/* Carte de tarification */
+.tarification-card {
+    width: 100%;
+    max-width: 350px; /* Limite la largeur à 350px */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    transition: transform 0.3s ease-in-out; /* Transition pour l'effet de zoom */
+}
+
+/* Effet de zoom au survol */
+.tarification-card:hover {
+    transform: scale(1.05); /* Zoom léger (agrandissement de 5%) */
+}
+
+/* En-tête avec fond gris clair */
+.tarification-header {
+    margin-bottom: 15px;
+    text-align: center;
+    background-color: #f0f0f0; /* Gris clair */
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* Détails de la location */
+.tarification-details {
+    margin-bottom: 20px;
+}
+
+.tarification-details ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.tarification-details li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+/* Icônes */
+.icon {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.check {
+    color: #4CAF50; /* Coche verte */
+}
+
+.cross {
+    color: #F44336; /* Croix rouge */
+}
+
+/* Footer avec bouton */
+.tarification-footer {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+/* Media Query pour les petits écrans */
+@media (max-width: 480px) {
+    .tarification-card {
+        padding: 15px;
+    }
+
+    .btn {
+        padding: 8px 16px;
+    }
+}
