@@ -7,7 +7,7 @@
 /* Le contenu principal s'étend pour remplir l'espace disponible */
 main {
     flex: 1; /* Permet au contenu principal de prendre tout l'espace restant */
-    background-image: url("public/wood-1846849.jpg");
+    background-image: url("/wood-1846849.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;

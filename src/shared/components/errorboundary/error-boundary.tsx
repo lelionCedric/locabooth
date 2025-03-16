@@ -1,8 +1,8 @@
 import React from "react";
 
 // ErrorBoundary pour capturer les erreurs au niveau des composants
-class ErrorBoundary extends React.Component<React.PropsWithChildren<object>, { hasError: boolean }> {
-    constructor(props: React.PropsWithChildren<object>) {
+class ErrorBoundary extends React.Component<React.PropsWithChildren<{}>, { hasError: boolean }> {
+    constructor(props: React.PropsWithChildren<{}>) {
         super(props);
         this.state = { hasError: false };
     }

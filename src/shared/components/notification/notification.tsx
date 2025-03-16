@@ -1,6 +1,17 @@
-import React, { useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import './notification.css'
-import { NotificationContext } from './hook/hook-notification';
+
+// Définir l'interface pour le contexte
+interface NotificationContextType {
+    addNotification: (type: string, message: string, duration?: number) => number;
+    removeNotification: (id: number) => void;
+}
+
+// Créer le contexte avec une valeur initiale qui respecte l'interface
+const NotificationContext = createContext<NotificationContextType>({
+    addNotification: () => 0, // Retourne un ID fictif
+    removeNotification: () => {} // Ne fait rien
+});
 
 export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [notifications, setNotifications] = useState<Array<{ id: number; type: string; message: string }>>([]);
@@ -41,4 +52,12 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
             </div>
         </NotificationContext.Provider>
     );
+};
+
+export const useNotification = (): NotificationContextType => {
+    const context = useContext(NotificationContext);
+    if (!context) {
+        throw new Error('useNotification must be used within a NotificationProvider');
+    }
+    return context;
 };

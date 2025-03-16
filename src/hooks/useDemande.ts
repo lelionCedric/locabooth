@@ -1,6 +1,6 @@
 import {sendDemande} from "../services/api";
 import {useMutation} from "react-query";
-import {useNotification} from "../shared/components/notification/hook/hook-notification.tsx";
+import {useNotification} from "../shared/components/notification/notification.tsx"; // Appel API
 
 // Définition du type pour les objets retournés par l'API
 export interface Demande{
