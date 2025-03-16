@@ -38,8 +38,7 @@ const Calendar = () => {
         for (let day = 1; day <= daysInMonth; day++) {
             const dayOfWeek = (firstDayOfMonth + day - 1) % 7; // Calculate day of the week
             const isWeekend = dayOfWeek === 5 || dayOfWeek === 6; // Saturday or Sunday
-
-            const filteredList = isWeekend && reservations?.some((item) => item.date.endsWith(`${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2,'0')}`));
+            const filteredList = isWeekend && Array.isArray(reservations) && reservations?.some((item) => item.date.endsWith(`${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2,'0')}`));
 
             days.push(
                 <div key={day} className="container">
