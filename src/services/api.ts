@@ -13,7 +13,7 @@ const api = axios.create({
 // Fonction pour récupérer la liste des dates
 export const fetchDates = async (month: number, year: number): Promise<Reservation[]> => {
     try {
-        const response = await api.get("/api/reservation",
+        const response = await api.get("/api/public/reservation",
             {
                 params: { month, year }, // Ajoute les valeurs dans l'URL
             }
@@ -29,7 +29,7 @@ export const fetchDates = async (month: number, year: number): Promise<Reservati
 
 export const sendDemande = async (demande: FormDemande) => {
     try {
-        const response = await api.post("/api/demande", demande);
+        const response = await api.post("/api/public/demande", demande);
         return response.data;
     } catch (error) {
         console.error("Erreur lors de l'envoi des données de la demande :", error);

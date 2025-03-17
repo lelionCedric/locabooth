@@ -77,14 +77,13 @@ const DemandeForm = ({jour, mois, annee, isOpen, handleCloseModal, currentDate}:
             {/* Modal (visible uniquement si isOpen est true) */}
             {isOpen && (
                 <div className="modal-overlay">
-                    {/* Overlay sombre */}
-                    <div
-                        className="modal-backdrop"
-                        onClick={handleCloseModal}
-                    ></div>
-
                     {/* Container de la modal avec centrage */}
                     <div className="modal-container">
+                        {/* Overlay sombre */}
+                        <div
+                            className="modal-backdrop"
+                            onClick={handleCloseModal}
+                        ></div>
                         {/* La modal elle-même */}
                         <div className="modal">
                             {/* En-tête de la modal */}
