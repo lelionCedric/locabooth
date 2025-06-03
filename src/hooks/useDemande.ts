@@ -15,6 +15,8 @@ export interface Demande{
     description: string;
     mail: string;
     telephone: string;
+    typeEvenement: string;
+    lieu: string;
 }
 
 const useDemande = () => {

@@ -23,6 +23,10 @@ const validationSchema = Yup.object().shape({
         ),
     description: Yup.string()
         .required("Ce champ est obligatoire"),
+    lieu: Yup.string()
+        .required("Veuillez indiquer le lieu de l'évènement"),
+    typeEvenement: Yup.string()
+        .required("Veuillez indiquer le type d'évènement, anniversaire, pacs, crémaillère etc.."),
     jour : Yup.number(),
     mois : Yup.number(),
     annee : Yup.number(),
@@ -48,6 +52,8 @@ const DemandeForm = ({jour, mois, annee, isOpen, handleCloseModal, currentDate}:
             mail: "",
             telephone: "",
             description: "",
+            lieu: "",
+            typeEvenement: "",
         },
         resolver: yupResolver(validationSchema),
     });
@@ -63,7 +69,7 @@ const DemandeForm = ({jour, mois, annee, isOpen, handleCloseModal, currentDate}:
             {
                 ...data,
                 jour: jour,
-                mois: currentDate.getMonth(),
+                mois: currentDate.getMonth() + 1,
                 annee: annee
             }
         );
@@ -156,6 +162,34 @@ const DemandeForm = ({jour, mois, annee, isOpen, handleCloseModal, currentDate}:
                                             />
                                             <small className="text-danger">
                                                 {errors.mail?.message}
+                                            </small>
+                                        </div>
+
+                                        <div className="form-group">
+                                            <label htmlFor="mail">Lieu de votre évènement</label>
+                                            <input
+                                                type="lieu"
+                                                id="lieu"
+                                                className="form-input"
+                                                required={true}
+                                                {...register("lieu")}
+                                            />
+                                            <small className="text-danger">
+                                                {errors.lieu?.message}
+                                            </small>
+                                        </div>
+
+                                        <div className="form-group">
+                                            <label htmlFor="mail">Type d'évènement</label>
+                                            <input
+                                                type="typeEvenement"
+                                                id="typeEvenement"
+                                                className="form-input"
+                                                required={true}
+                                                {...register("typeEvenement")}
+                                            />
+                                            <small className="text-danger">
+                                                {errors.typeEvenement?.message}
                                             </small>
                                         </div>
 
