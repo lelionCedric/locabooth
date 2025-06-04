@@ -6,6 +6,7 @@ import {Disponibilite} from "./disponibilite";
 import {PageGallerie} from "./page-gallerie";
 import {Tarif} from "./tarif";
 import Error from "../shared/components/errorPage/error.tsx";
+import {Admin} from "./admin/admin.tsx";
 
 export const routes: RouteObject[] = [
     {
@@ -49,6 +50,17 @@ export const routes: RouteObject[] = [
             {
                 index: true,
                 element: <Tarif />
+            }
+        ],
+    },
+    {
+        id: 'admin',
+        path: Routes.admin,
+        element: <Layout />,
+        children: [
+            {
+                index: true,
+                element: <Admin />
             }
         ],
     },
