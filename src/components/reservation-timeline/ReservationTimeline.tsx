@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import WeekendGroup from "./WeekendGroup";
 import dayjs from "dayjs";
 import isoWeek from "dayjs/plugin/isoWeek";
@@ -17,11 +17,32 @@ export interface Reservation {
     status: "confirmée" | "en attente" | "annulée";
 }
 
-const ReservationTimeline: React.FC = () => {
+const ReservationTimeline = () => {
     const [reservations, setReservations] = useState<Reservation[]>([]);
 
     useEffect(() => {
-        fetch("/api/reservations")
+        setReservations([
+            {
+                id: 1,
+                date: "2025-06-07",
+                client: "Dupont F.",
+                phone: "0612345678",
+                location: "Château de la Forêt",
+                city: "Bordeaux",
+                status: "confirmée"
+            },
+            {
+                id: 2,
+                date: "2025-06-08",
+                client: "Martin S.",
+                phone: "0798765432",
+                location: "Salle des Fêtes des Lilas",
+                city: "Toulouse",
+                status: "en attente"
+            }
+        ]);
+
+        /*fetch("/api/reservations")
             .then(res => res.json())
             .then(data => setReservations([
                 {
@@ -43,7 +64,10 @@ const ReservationTimeline: React.FC = () => {
                     status: "en attente"
                 }
             ]));
+         */
     }, []);
+
+
 
     const grouped = groupBy(reservations, r =>
         dayjs(r.date).startOf("isoWeek").format("YYYY-MM-DD")

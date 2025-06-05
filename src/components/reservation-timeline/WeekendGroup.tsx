@@ -1,4 +1,3 @@
-import React from "react";
 import ReservationCard from "./ReservationCard";
 import { Reservation } from "./ReservationTimeline";
 import dayjs from "dayjs";
@@ -9,7 +8,7 @@ interface Props {
     reservations: Reservation[];
 }
 
-const WeekendGroup: React.FC<Props> = ({ startOfWeek, reservations }) => {
+const WeekendGroup = ({ startOfWeek, reservations } : Props ) => {
     const saturday = dayjs(startOfWeek).add(5, "day");
     const sunday = saturday.add(1, "day");
 

@@ -1,4 +1,3 @@
-import React from "react";
 import { Reservation } from "./ReservationTimeline";
 import "./ReservationCard.css";
 
@@ -6,7 +5,7 @@ interface Props {
     reservation: Reservation;
 }
 
-const ReservationCard: React.FC<Props> = ({ reservation }) => {
+const ReservationCard= ({ reservation } : Props) => {
     return (
         <div className={`reservation-card status-${reservation.status.replace(" ", "-")}`}>
             <div className="reservation-info">

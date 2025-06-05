@@ -6,7 +6,6 @@ import "./accueil.css"
 
 export const Accueil = () =>
 {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     useTitle('Accueil');
 
     const images: string[] = [];
