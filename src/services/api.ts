@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {Reservation} from "../hooks/useReservations.ts";
 import {FormDemande} from "../hooks/useDemande.ts";
+import {Avis} from "../hooks/useAvis.ts";
 
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -40,6 +41,16 @@ export const sendDemande = async (demande: FormDemande) => {
     } catch (error) {
         console.error("Erreur lors de l'envoi des données de la demande :", error);
         throw error;
+    }
+};
+
+export const fetchAvis = async (): Promise<Avis[]> => {
+    try {
+        const response = await api.get("/api/public/avis", {} ); // Appel API
+        return response.data; // Assure-toi que l'API renvoie bien un tableau de dates
+    } catch (error) {
+        console.error("Erreur lors de la récupération des avis :", error);
+        throw error; // Relance l'erreur pour que le composant puisse la gérer
     }
 };
 

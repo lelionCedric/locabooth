@@ -1,0 +1,275 @@
+/* Avis.css */
+
+.avis-container {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.avis-header {
+    margin-bottom: 32px;
+}
+
+.avis-header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.avis-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 8px;
+}
+
+.avis-stats {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.avis-stars-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.avis-stars {
+    display: flex;
+    gap: 4px;
+}
+
+.star {
+    width: 20px;
+    height: 20px;
+}
+
+.star-filled {
+    color: #fbbf24;
+    fill: #fbbf24;
+}
+
+.star-empty {
+    color: #d1d5db;
+}
+
+.avis-rating-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.avis-count {
+    color: #6b7280;
+}
+
+.avis-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.avis-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    padding: 24px;
+    border: 1px solid #f3f4f6;
+    transition: box-shadow 0.3s ease;
+}
+
+.avis-card:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.avis-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.avis-user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avis-avatar {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avis-avatar img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.avis-avatar-icon {
+    width: 24px;
+    height: 24px;
+    color: white;
+}
+
+.avis-user-details h3 {
+    font-weight: 600;
+    color: #1f2937;
+    font-size: 1.125rem;
+    margin: 0;
+}
+
+.avis-user-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.avis-user-stars {
+    display: flex;
+    gap: 2px;
+}
+
+.avis-user-stars .star {
+    width: 16px;
+    height: 16px;
+}
+
+.avis-rating-number {
+    font-size: 0.875rem;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.avis-date {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.avis-date-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+}
+
+.avis-card-title {
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 12px;
+    font-size: 1.125rem;
+}
+
+.avis-comment {
+    color: #374151;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.avis-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.avis-category-tag {
+    padding: 4px 12px;
+    background-color: #dbeafe;
+    color: #1e40af;
+    font-size: 0.875rem;
+    border-radius: 9999px;
+    font-weight: 500;
+}
+
+.avis-recommendation {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #f3f4f6;
+}
+
+.avis-recommendation-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.avis-recommendation-text {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.avis-empty-state {
+    text-align: center;
+    padding: 48px 0;
+}
+
+.avis-empty-icon {
+    width: 64px;
+    height: 64px;
+    background-color: #f3f4f6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+}
+
+.avis-empty-icon .star {
+    width: 32px;
+    height: 32px;
+    color: #9ca3af;
+}
+
+.avis-empty-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 8px;
+}
+
+.avis-empty-description {
+    color: #6b7280;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .avis-container {
+        padding: 16px;
+    }
+
+    .avis-header-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .avis-title {
+        font-size: 1.75rem;
+    }
+
+    .avis-card {
+        padding: 16px;
+    }
+
+    .avis-card-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .avis-stats {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}

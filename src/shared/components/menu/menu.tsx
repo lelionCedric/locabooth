@@ -35,6 +35,9 @@ const Menu = () => {
                 <div className={location.pathname === "/tarif" ? "" : "visible-menu"}>
                     Tarif
                 </div>
+                <div className={location.pathname === "/avis" ? "" : "visible-menu"}>
+                    Avis
+                </div>
             </div>
             <nav className="nav container">
                 <div
@@ -43,14 +46,16 @@ const Menu = () => {
                 >
                     <ul className="nav__list">
                         <li className="nav__item">
-                            <NavLink to="/" className={({ isActive }) => (isActive ? "nav__link current_menu" : "nav__link")} onClick={() => closeMenuOnMobile()}>
+                            <NavLink to="/"
+                                     className={({isActive}) => (isActive ? "nav__link current_menu" : "nav__link")}
+                                     onClick={() => closeMenuOnMobile()}>
                                 Accueil
                             </NavLink>
                         </li>
                         <li className="nav__item">
                             <NavLink
                                 to="/disponibilite"
-                                className={({ isActive }) => (isActive ? "nav__link current_menu" : "nav__link")}
+                                className={({isActive}) => (isActive ? "nav__link current_menu" : "nav__link")}
                                 onClick={() => closeMenuOnMobile()}
                             >
                                 Disponibilités
@@ -59,7 +64,7 @@ const Menu = () => {
                         <li className="nav__item">
                             <NavLink
                                 to="/gallerie"
-                                className={({ isActive }) => (isActive ? "nav__link current_menu" : "nav__link")}
+                                className={({isActive}) => (isActive ? "nav__link current_menu" : "nav__link")}
                                 onClick={() => closeMenuOnMobile()}
                             >
                                 Gallerie
@@ -68,12 +73,23 @@ const Menu = () => {
                         <li className="nav__item">
                             <NavLink
                                 to="/tarif"
-                                className={({ isActive }) => (isActive ? "nav__link current_menu" : "nav__link")}
+                                className={({isActive}) => (isActive ? "nav__link current_menu" : "nav__link")}
                                 onClick={() => closeMenuOnMobile()}
                             >
                                 Tarif
                             </NavLink>
                         </li>
+
+                        <li className="nav__item" hidden>
+                            <NavLink
+                                to="/avis"
+                                className={({isActive}) => (isActive ? "nav__link current_menu" : "nav__link")}
+                                onClick={() => closeMenuOnMobile()}
+                            >
+                                Les Avis
+                            </NavLink>
+                        </li>
+
                     </ul>
                     <div className="nav__close" id="nav-close" onClick={toggleMenu}>
                         <IoClose/>

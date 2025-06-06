@@ -9,6 +9,7 @@ import Error from "../shared/components/errorPage/error.tsx";
 import {Admin} from "./admin";
 import {requireAuth} from "../auth/requireAuth.ts";
 import {Login} from "./login";
+import {Avis} from "./avis";
 
 export const routes: RouteObject[] = [
     {
@@ -52,6 +53,17 @@ export const routes: RouteObject[] = [
             {
                 index: true,
                 element: <Tarif />
+            }
+        ],
+    },
+    {
+        id: 'avis',
+        path: Routes.avis,
+        element: <Layout />,
+        children: [
+            {
+                index: true,
+                element: <Avis />
             }
         ],
     },
