@@ -1,0 +1,46 @@
+.reservation-card {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fefefe;
+}
+
+.reservation-info .client {
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
+
+.reservation-info .location {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.reservation-info .phone {
+    font-size: 0.85rem;
+    color: #777;
+}
+
+.status {
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    align-self: flex-start;
+    text-transform: capitalize;
+}
+
+.status-confirmée {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-en-attente {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-annulée {
+    background-color: #f8d7da;
+    color: #721c24;
+}

@@ -1,0 +1,19 @@
+.weekend-group {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.weekend-title {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.reservation-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}

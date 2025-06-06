@@ -3,5 +3,7 @@ export const Routes = {
     disponibilite: "/disponibilite",
     gallerie: "/gallerie",
     tarif: "/tarif",
+    login: "/login",
+    admin: "/admin",
     error: "*",
 } as const;
