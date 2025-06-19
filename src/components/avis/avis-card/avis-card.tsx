@@ -1,7 +1,7 @@
 // Avis.tsx
 import {Calendar, Star, User} from 'lucide-react';
 import './avis-card.css';
-import {Avis} from "../../hooks/useAvis.ts";
+import {Avis} from "../../../hooks/useAvis.ts";
 
 interface AvisCardProps {
     avis: Avis;

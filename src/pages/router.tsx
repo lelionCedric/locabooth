@@ -10,6 +10,7 @@ import {Admin} from "./admin";
 import {requireAuth} from "../auth/requireAuth.ts";
 import {Login} from "./login";
 import {Avis} from "./avis";
+import {CreationAvis} from "./avis/creationAvis";
 
 export const routes: RouteObject[] = [
     {
@@ -64,6 +65,17 @@ export const routes: RouteObject[] = [
             {
                 index: true,
                 element: <Avis />
+            }
+        ],
+    },
+    {
+        id: 'ajouter-avis',
+        path: Routes.ajouterAvis,
+        element: <Layout />,
+        children: [
+            {
+                index: true,
+                element: <CreationAvis />
             }
         ],
     },

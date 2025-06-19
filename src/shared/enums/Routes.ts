@@ -4,6 +4,7 @@ export const Routes = {
     gallerie: "/gallerie",
     tarif: "/tarif",
     avis: "/avis",
+    ajouterAvis: '/votre-avis/:token',
     login: "/login",
     admin: "/admin",
     error: "*",

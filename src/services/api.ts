@@ -47,10 +47,20 @@ export const sendDemande = async (demande: FormDemande) => {
 export const fetchAvis = async (): Promise<Avis[]> => {
     try {
         const response = await api.get("/api/public/avis", {} ); // Appel API
-        return response.data; // Assure-toi que l'API renvoie bien un tableau de dates
+        return response.data;
     } catch (error) {
         console.error("Erreur lors de la récupération des avis :", error);
         throw error; // Relance l'erreur pour que le composant puisse la gérer
+    }
+};
+
+export const sendAvis = async (avis: Avis) => {
+    try {
+        const response = await api.post("/api/public/avis", avis);
+        return response.data;
+    } catch (error) {
+        console.error('Erreur lors de la création de l\'avis', error);
+        throw error;
     }
 };
 

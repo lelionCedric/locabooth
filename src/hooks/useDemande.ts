@@ -20,8 +20,6 @@ export interface Demande{
 }
 
 const useDemande = () => {
-       // Configuration de la mutation avec React Query
-
     const { addNotification } = useNotification();
     const {mutate, isLoading, isError, isSuccess} = useMutation({
         mutationFn: sendDemande,
