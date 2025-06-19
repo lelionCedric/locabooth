@@ -9,6 +9,7 @@ export interface Avis {
     commentaire: string;
     date?: string;
     recommande?: boolean;
+    token?: string;
 }
 
 const useAvis = () => {

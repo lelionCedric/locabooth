@@ -1,7 +1,7 @@
 // src/components/avis-form/avis-form.tsx
 import {useState} from 'react';
 import './formulaireAvis.css';
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import useCreerAvis from "../../../hooks/useCreerAvis.tsx";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
@@ -32,7 +32,7 @@ const validationSchema = Yup.object().shape({
 
 export const AvisForm = () => {
     const navigate = useNavigate();
-
+    const { token } = useParams<{ token: string }>();
     //const { token } = useParams<{ token: string }>();
     const {register, handleSubmit, setValue, getValues, watch , formState: { errors }} = useForm({
         mode: "onBlur",
@@ -63,7 +63,8 @@ export const AvisForm = () => {
         setError(null);
         mutate(
             {
-               ...data
+               ...data,
+                token,
             }
         );
         setSuccess(isError);
