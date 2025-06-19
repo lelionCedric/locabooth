@@ -54,6 +54,15 @@ export const fetchAvis = async (): Promise<Avis[]> => {
     }
 };
 
+export const fetchToken = async (token: string): Promise<void> => {
+    try {
+        await api.get(`/api/public/avis/validate-token/${token}`, {});
+    } catch (error) {
+        console.error("Erreur lors de la validation du token :", error);
+        throw error; // Relance l'erreur pour que le composant puisse la gérer
+    }
+};
+
 export const sendAvis = async (avis: Avis) => {
     try {
         const response = await api.post("/api/public/avis", avis);

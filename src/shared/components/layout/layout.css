@@ -7,7 +7,8 @@
 /* Le contenu principal s'étend pour remplir l'espace disponible */
 main {
     flex: 1; /* Permet au contenu principal de prendre tout l'espace restant */
-    background-image: url("/wood-1846849.jpg");
+    #background-image: url("/wood-1846849.jpg");
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;

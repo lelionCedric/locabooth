@@ -6,33 +6,41 @@ import useCreerAvis from "../../../hooks/useCreerAvis.tsx";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import {Recommandation} from "./recommandation";
 
 interface AvisFormData {
     prenom: string;
     note: number;
     commentaire: string;
+    recommande: boolean | undefined,
 }
 
 const validationSchema = Yup.object().shape({
     prenom: Yup.string()
         .required("Ce champ est obligatoire"),
-    note: Yup.number().max(5).min(1).required(
-        "Ce champ est obligatoire"
-    ),
+    note: Yup.number()
+        .nullable()
+        .required("Veuillez sélectionner une note")
+        .min(1, "Veuillez sélectionner au moins 1 étoile")
+        .max(5, "La note maximum est de 5 étoiles"),
     commentaire: Yup.string()
         .required("Ce champ est obligatoire"),
+    recommande: Yup.boolean().required(
+        "Veuillez indiquer si vous recommandez ou non"
+    ),
 });
 
 export const AvisForm = () => {
     const navigate = useNavigate();
 
     //const { token } = useParams<{ token: string }>();
-    const {register, handleSubmit, setValue, getValues, watch} = useForm({
+    const {register, handleSubmit, setValue, getValues, watch , formState: { errors }} = useForm({
         mode: "onBlur",
         defaultValues: {
             prenom: "",
-            note: 0,
+            note: undefined,
             commentaire: "",
+            recommande: undefined,
         },
         resolver: yupResolver(validationSchema),
     });
@@ -79,6 +87,7 @@ export const AvisForm = () => {
                 >
                     ★
                 </button>
+
             );
         });
     };
@@ -105,6 +114,10 @@ export const AvisForm = () => {
             </div>
         );
     }
+
+    const handleRecommendationChange = (value: boolean) => {
+        setValue('recommande', value, { shouldValidate: true });
+    };
 
     return (
         <div className="ajouter-avis-form">
@@ -142,9 +155,14 @@ export const AvisForm = () => {
                         <div className="star-rating-form">
                             {renderStars()}
                             <span className="rating-text-form">
-                {getValues('note')}/5
-              </span>
+                            {getValues('note') | 0}/5
+                          </span>
                         </div>
+                        {errors.note && (
+                            <div className="recommendation-error">
+                                {errors.note.message}
+                            </div>
+                        )}
                     </div>
 
                     <div className="form-field-form">
@@ -160,6 +178,13 @@ export const AvisForm = () => {
                             rows={5}
                         />
                     </div>
+
+
+                    <Recommandation
+                        value={getValues('recommande')}
+                        onChange={handleRecommendationChange}
+                        error={errors.recommande?.message}
+                    />
 
                     <div className="form-actions-form">
                         <button

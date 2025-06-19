@@ -4,6 +4,7 @@ import {useNavigate, useParams} from 'react-router-dom';
 import './creationAvis.css';
 import {useTitle} from "../../../shared/hooks/useTitle/useTitle.tsx";
 import {AvisForm} from "../../../components/avis/formulaire-avis";
+import useCreerAvis from "../../../hooks/useCreerAvis.tsx";
 
 export const CreationAvis = () => {
     useTitle('Laisser un avis');
@@ -12,35 +13,28 @@ export const CreationAvis = () => {
     const navigate = useNavigate();
 
     const [tokenValid, setTokenValid] = useState<boolean | null>(null);
+    const { validateToken } = useCreerAvis();
 
-    // Vérifier la validité du token au chargement
     useEffect(() => {
-        const validateToken = async () => {
+        const check = async () => {
+
             if (!token) {
                 setTokenValid(false);
                 return;
             }
-
             try {
-                const response = await fetch(`/api/avis/validate-token/${token}`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
-
-                if (response.ok) {
+                const valid = await validateToken(token);
+                if(valid)
                     setTokenValid(true);
-                } else {
+                else{
                     setTokenValid(false);
                 }
             } catch {
                 setTokenValid(false);
             }
         };
-
-        validateToken();
-    }, [token]);
+        check();
+    }, [navigate, token, validateToken]);
 
     // Token invalide ou manquant
     if (tokenValid === false) {

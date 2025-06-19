@@ -1,7 +1,7 @@
 // src/hooks/useAvis.ts
 
 import {useMutation} from "react-query";
-import {sendAvis} from "../services/api.ts";
+import {fetchToken, sendAvis} from "../services/api.ts";
 import {useNotification} from "../shared/components/notification/notification.tsx";
 
 const useCreerAvis = () => {
@@ -17,8 +17,17 @@ const useCreerAvis = () => {
     }
   });
 
+  const validateToken = async (token: string) => {
+    try {
+      await fetchToken(token);
+      return true;
+    } catch {
+      return false;
+    }
+  };
 
-  return { mutate, isError, isSuccess, isLoading };
+
+  return { mutate, isError, isSuccess, isLoading, validateToken };
 };
 
 export default useCreerAvis;
