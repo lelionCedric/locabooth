@@ -1,5 +1,6 @@
 // auth/useAuth.ts
 import {authentification, check} from "../services/api.ts";
+import {useCallback} from "react";
 
 export const useAuth = () => {
 
@@ -16,14 +17,15 @@ export const useAuth = () => {
         //navigate("/accueil");
     };
 
-    const validateToken = async () => {
+    const validateToken = useCallback(async (): Promise<boolean> => {
         try {
             await check();
-            return true;
+            return true; // Token valide
         } catch {
-            return false;
+            return false; // Token invalide
         }
-    };
+    }, []);
+
 
     return { login, logout, validateToken };
 };

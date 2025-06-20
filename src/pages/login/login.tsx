@@ -10,12 +10,20 @@ export const Login = () => {
     const { login, validateToken } = useAuth();
 
     useEffect(() => {
-        const check = async () => {
-            const valid = await validateToken();
-            if (valid) navigate("/admin", { replace: true });
+        const checkAuth = async () => {
+            try {
+                const isValid = await validateToken();
+                if (isValid) {
+                    navigate("/admin", { replace: true });
+                }
+            } catch {
+                // Token invalide, rester sur la page de login
+                console.log("Token invalide, affichage du formulaire de login");
+            }
         };
-        check();
-    }, [navigate, validateToken]);
+
+        checkAuth();
+    }, [navigate, validateToken]); // Pas de dépendances si validateToken est mémorisée
 
 
     const handleSubmit = (e: React.FormEvent) => {

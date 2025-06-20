@@ -7,7 +7,7 @@ export const requireAuth = async () => {
     if (!token) throw redirect("/login");
 
     try {
-        check(); // ← valider le token via backend
+        await check(); // ← valider le token via backend
         return null; // token valide, autorisé
     } catch {
         localStorage.removeItem("jwt"); // token corrompu ou expiré
