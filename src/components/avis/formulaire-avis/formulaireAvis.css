@@ -1,0 +1,431 @@
+/* src/pages/ajouter-avis/ajouter-avis.css */
+
+.ajouter-avis-form {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+
+}
+
+.ajouter-avis-form__container {
+    max-width: 600px;
+    width: 100%;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem;
+    border: 1px solid #e5e7eb;
+}
+
+.ajouter-avis-form__header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.ajouter-avis-form__header h1 {
+    margin: 0 0 0.5rem 0;
+    color: #1f2937;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.ajouter-avis-form__header p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 1.1rem;
+}
+
+/* Messages de feedback */
+.ajouter-avis-form__error {
+    background-color: #fee2e2;
+    color: #991b1b;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border: 1px solid #fca5a5;
+    font-weight: 500;
+}
+
+/* Formulaire */
+.ajouter-avis-form__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-field-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-label-form {
+    font-weight: 600;
+    color: #374151;
+    font-size: 0.9rem;
+}
+
+.form-input-form,
+.form-textarea-form {
+    padding: 0.875rem 1rem;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background-color: #ffffff;
+    font-family: inherit;
+}
+
+.form-input-form:focus,
+.form-textarea-form:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-textarea-form {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Système d'étoiles */
+.star-rating-form {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-top: 0.5rem;
+}
+
+.star-form {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #d1d5db;
+    transition: color 0.2s ease, transform 0.1s ease;
+    padding: 0.25rem;
+    border-radius: 4px;
+}
+
+.star-form:hover {
+    transform: scale(1.1);
+}
+
+.star-form--active {
+    color: #fbbf24;
+}
+
+.star-form:hover,
+.star-form:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+.rating-text-form {
+    margin-left: 1rem;
+    font-weight: 700;
+    color: #1f2937;
+    font-size: 1.1rem;
+}
+
+/* Actions du formulaire */
+.form-actions-form {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.btn-primary-form,
+.btn-secondary-form {
+    padding: 0.875rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    min-width: 120px;
+}
+
+.btn-primary-form {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.btn-primary-form:hover:not(:disabled) {
+    background-color: #2563eb;
+    transform: translateY(-1px);
+}
+
+.btn-primary-form:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-secondary-form {
+    background-color: #f9fafb;
+    color: #374151;
+    border: 2px solid #d1d5db;
+}
+
+.btn-secondary-form:hover {
+    background-color: #f3f4f6;
+    border-color: #9ca3af;
+}
+
+/* Pages spéciales */
+.ajouter-avis-form__loading,
+.ajouter-avis-form__error-page,
+.ajouter-avis-form__success-page {
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    padding: 3rem 2rem;
+}
+
+.loading-spinner-form {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e5e7eb;
+    border-top: 4px solid #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.error-icon-form,
+.success-icon-form {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.error-icon-form {
+    color: #ef4444;
+}
+
+.success-icon-form {
+    color: #10b981;
+    font-weight: bold;
+}
+
+.ajouter-avis-form__error-page h2,
+.ajouter-avis-form__success-page h2 {
+    color: #1f2937;
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+}
+
+.ajouter-avis-form__error-page p,
+.ajouter-avis-form__success-page p {
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.ajouter-avis-form__loading p {
+    color: #6b7280;
+    font-size: 1.1rem;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .ajouter-avis-form {
+        padding: 1rem;
+    }
+
+    .ajouter-avis-form__container {
+        padding: 1.5rem;
+    }
+
+    .ajouter-avis-form__header h1 {
+        font-size: 1.5rem;
+    }
+
+    .star-form {
+        font-size: 1.5rem;
+    }
+
+    .form-actions-form {
+        flex-direction: column;
+    }
+
+    .btn-primary-form,
+    .btn-secondary-form {
+        width: 100%;
+    }
+}
+
+
+/* RecommendationSelector.css */
+.recommendation-selector {
+    margin-bottom: 1.5rem;
+}
+
+.recommendation-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.thumb-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    background-color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+    min-height: 100px;
+    font-family: inherit;
+    position: relative;
+    overflow: hidden;
+}
+
+.thumb-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.thumb-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+.thumb-up {
+    border-color: #10b981;
+    color: #065f46;
+}
+
+.thumb-up:hover {
+    background-color: #f0fdf4;
+    border-color: #059669;
+}
+
+.thumb-up.thumb-button--active {
+    background-color: #10b981;
+    border-color: #059669;
+    color: white;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.thumb-down {
+    border-color: #ef4444;
+    color: #991b1b;
+}
+
+.thumb-down:hover {
+    background-color: #fef2f2;
+    border-color: #dc2626;
+}
+
+.thumb-down.thumb-button--active {
+    background-color: #ef4444;
+    border-color: #dc2626;
+    color: white;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.thumb-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    filter: grayscale(0);
+    transition: all 0.3s ease;
+}
+
+.thumb-button:not(.thumb-button--active) .thumb-icon {
+    filter: grayscale(0.7);
+    opacity: 0.6;
+}
+
+.thumb-button--active .thumb-icon {
+    transform: scale(1.1);
+}
+
+.thumb-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.recommendation-error {
+    color: #dc2626;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.recommendation-error::before {
+    content: '⚠';
+    font-size: 1rem;
+}
+
+/* Animation pour les boutons actifs */
+.thumb-button--active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.3),
+            transparent
+    );
+    animation: shine 1s ease-in-out;
+}
+
+@keyframes shine {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .recommendation-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .thumb-button {
+        flex-direction: row;
+        min-height: 60px;
+        padding: 0.75rem;
+    }
+
+    .thumb-icon {
+        font-size: 1.5rem;
+        margin-bottom: 0;
+        margin-right: 0.5rem;
+    }
+
+    .thumb-text {
+        font-size: 0.875rem;
+    }
+}
