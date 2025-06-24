@@ -2,10 +2,16 @@ import {useState} from "react";
 import "./avis-management.css";
 import AvisCardManagement from "./avis-card-management/avis-card-management.tsx";
 import useAvisAdmin, {ModifierAvisCommande} from "../../../hooks/useAvisAdmin.tsx";
+import useTokenAvis from "../../../hooks/useTokenAvis.tsx";
 
 const AvisManagement = () => {
-    const { useRecupererAvisAdmin, mutate } = useAvisAdmin();
-    let { avis,  } = useRecupererAvisAdmin();
+    const [labelToken, setLabelToken] = useState("");
+    const { RecupererAvisAdmin, mutate} = useAvisAdmin();
+    const {useRecupererTokenAvis} = useTokenAvis();
+    const {
+        mutate: generateToken,
+    } = useRecupererTokenAvis();
+    let { avis } = RecupererAvisAdmin();
     avis = avis?? [];
 
     const [filter, setFilter] = useState<"tous" | "ATTENTE" | "VALIDE" | "REJETE">("tous");
@@ -30,6 +36,18 @@ const AvisManagement = () => {
         );
 
     };
+
+    const handleGenerateToken = () => {
+        generateToken(undefined, {
+            onSuccess: (data) => {
+                setLabelToken(data.token);
+            },
+            onError: () => {
+                setLabelToken("Erreur lors de la génération du token.");
+            }
+        });
+    };
+
     const filteredAvis = filter === "tous"
         ? avis
         : avis.filter(avis => avis.etat === filter);
@@ -50,6 +68,15 @@ const AvisManagement = () => {
                     <span className="stat pending">En attente: {countByStatus.enAttente}</span>
                     <span className="stat validated">Validés: {countByStatus.valide}</span>
                     <span className="stat rejected">Rejetés: {countByStatus.rejete}</span>
+                </div>
+                <div className="generate-token">
+                    <button
+                        className="filter-btn"
+                        onClick={handleGenerateToken}
+                    >
+                        Générer un token d'avis
+                    </button>
+                    <label>{labelToken}</label>
                 </div>
             </div>
 

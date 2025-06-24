@@ -2,6 +2,7 @@ import axios from 'axios';
 import {Reservation} from "../hooks/useReservations.ts";
 import {FormDemande} from "../hooks/useDemande.ts";
 import {Avis} from "../hooks/useAvis.ts";
+import {TokenAvis} from "../hooks/useAvisAdmin.tsx";
 
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -108,11 +109,24 @@ export const fetchAvisAdmin = async (etat?: string): Promise<Avis[]> => {
 };
 
 export const modifieAvisAdmin = async (avis: number, etat?: string) => {
-    console.debug(etat)
     try {
         await api.put(`/api/protected/avis/${avis}`, etat, );
     } catch (error) {
         console.error("Erreur lors de la récupération des avis :", error);
         throw error; // Relance l'erreur pour que le composant puisse la gérer
     }
+};
+
+export const fetchNewToken = async (): Promise<TokenAvis> => {
+    try {
+        const response = await api.put("/api/protected/token",{}); // Appel API
+        return response.data;
+    } catch (error) {
+        console.error("Erreur lors de la récupération d'un nouveau token :", error);
+        throw error; // Relance l'erreur pour que le composant puisse la gérer
+    }
+};
+
+export const useRecupererTokenAvis = () => {
+
 };

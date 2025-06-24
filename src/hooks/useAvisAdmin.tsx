@@ -11,6 +11,11 @@ export type ModifierAvisCommande = {
     etat: string;
 }
 
+export interface TokenAvis {
+    token: string;
+    expiredAt: Date;
+}
+
 const useAvisAdmin = () => {
     const { addNotification } = useNotification();
     const {mutate, isLoading, isError, isSuccess} = useMutation<
@@ -28,7 +33,7 @@ const useAvisAdmin = () => {
     });
 
 
-    const useRecupererAvisAdmin = (etat?: string) => {
+    const RecupererAvisAdmin = (etat?: string) => {
         const { data: avis, isLoading, isError } = useQuery({
             queryKey: ["avis"],
             queryFn: () => fetchAvisAdmin(etat),
@@ -38,8 +43,7 @@ const useAvisAdmin = () => {
         return { avis, isLoading, isError };
     };
 
-
-    return { mutate, isError, isSuccess, isLoading, useRecupererAvisAdmin };
+    return { mutate, isError, isSuccess, isLoading, RecupererAvisAdmin };
 };
 
 export default useAvisAdmin;

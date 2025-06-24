@@ -133,3 +133,8 @@
         padding: 8px 12px;
     }
 }
+
+.generate-token {
+    display: flex;
+    flex-direction: column;
+}
