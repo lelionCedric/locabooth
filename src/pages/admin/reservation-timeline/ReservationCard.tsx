@@ -1,4 +1,4 @@
-import { Reservation } from "./ReservationTimeline";
+import { Reservation } from "./ReservationTimeline.tsx";
 import "./ReservationCard.css";
 
 interface Props {

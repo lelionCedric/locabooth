@@ -92,3 +92,27 @@ export const check = async (): Promise<void> => {
         throw error; // Relance l'erreur pour que le composant puisse la gérer
     }
 };
+
+export const fetchAvisAdmin = async (etat?: string): Promise<Avis[]> => {
+    try {
+        const response = await api.get("/api/protected/avis",
+            {
+                params: etat
+            }
+        ); // Appel API
+        return response.data;
+    } catch (error) {
+        console.error("Erreur lors de la récupération des avis :", error);
+        throw error; // Relance l'erreur pour que le composant puisse la gérer
+    }
+};
+
+export const modifieAvisAdmin = async (avis: number, etat?: string) => {
+    console.debug(etat)
+    try {
+        await api.put(`/api/protected/avis/${avis}`, etat, );
+    } catch (error) {
+        console.error("Erreur lors de la récupération des avis :", error);
+        throw error; // Relance l'erreur pour que le composant puisse la gérer
+    }
+};

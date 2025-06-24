@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import WeekendGroup from "./WeekendGroup";
+import WeekendGroup from "./WeekendGroup.tsx";
 import dayjs from "dayjs";
 import isoWeek from "dayjs/plugin/isoWeek";
 import "./ReservationTimeline.css";

@@ -1,5 +1,5 @@
-import ReservationCard from "./ReservationCard";
-import { Reservation } from "./ReservationTimeline";
+import ReservationCard from "./ReservationCard.tsx";
+import { Reservation } from "./ReservationTimeline.tsx";
 import dayjs from "dayjs";
 import "./WeekendGroup.css";
 

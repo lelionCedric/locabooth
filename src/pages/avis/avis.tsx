@@ -2,7 +2,7 @@ import {useTitle} from "../../shared/hooks/useTitle/useTitle";
 import {Star} from 'lucide-react';
 import "./avis.css"
 import {AvisCard} from "../../components/avis/avis-card";
-import useAvis from "../../hooks/useAvis.ts";
+import useAvis from "../../hooks/useAvis.tsx";
 
 export const Avis = () =>
 {
