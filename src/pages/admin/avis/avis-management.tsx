@@ -10,23 +10,23 @@ const AvisManagement = () => {
 
     const [filter, setFilter] = useState<"tous" | "ATTENTE" | "VALIDE" | "REJETE">("tous");
 
-    const handleValidateAvis = (id: number) => {
+    const handleValidateAvis = (id?: number) => {
         const modifierAvisCommande = {
             id,
             etat: "VALIDE",
         } as ModifierAvisCommande;
-        console.debug(modifierAvisCommande.etat)
         mutate(
             modifierAvisCommande
         );
     };
 
-    const handleRejectAvis = (id: number) => {
+    const handleRejectAvis = (id?: number) => {
+        const modifierAvisCommande = {
+            id,
+            etat: "REJETE",
+        } as ModifierAvisCommande;
         mutate(
-            {
-                id,
-                "etat": "REJETE",
-            }
+            modifierAvisCommande
         );
 
     };

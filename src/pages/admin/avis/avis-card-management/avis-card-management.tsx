@@ -4,12 +4,12 @@ import {AvisCard} from "../../../../components/avis/avis-card";
 
 interface Props {
     avis: Avis;
-    onValidate: (id: number) => void;
-    onReject: (id: number) => void;
+    onValidate: (id?: number) => void;
+    onReject: (id?: number) => void;
 }
 
 const AvisCardManagement = ({ avis, onValidate, onReject }: Props) => {
-    const getetatColor = (etat: string) => {
+    const getetatColor = (etat?: string) => {
         switch (etat) {
             case "ATTENTE": return "pending";
             case "VALIDE": return "validated";
@@ -19,7 +19,7 @@ const AvisCardManagement = ({ avis, onValidate, onReject }: Props) => {
     };
 
     return (
-        <div className={`   etat-${getetatColor(avis.etat)}`}>
+        <div className={`etat-${getetatColor(avis.etat)}`}>
 
             <AvisCard key={avis.id} avis={avis} />
 
