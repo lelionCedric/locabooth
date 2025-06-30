@@ -1,7 +1,7 @@
 export const Routes = {
     accueil: "/",
     disponibilite: "/disponibilite",
-    gallerie: "/gallerie",
+    galerie: "/galerie",
     tarif: "/tarif",
     avis: "/avis",
     ajouterAvis: '/votre-avis/:token',

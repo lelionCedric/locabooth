@@ -3,7 +3,7 @@ import {Routes} from '../shared/enums/Routes'
 import {Layout} from "../shared/components/layout/layout";
 import {Accueil} from "./accueil";
 import {Disponibilite} from "./disponibilite";
-import {PageGallerie} from "./page-gallerie";
+import {PageGalerie} from "./page-galerie";
 import {Tarif} from "./tarif";
 import Error from "../shared/components/errorPage/error.tsx";
 import {Admin} from "./admin";
@@ -36,13 +36,13 @@ export const routes: RouteObject[] = [
         ],
     },
     {
-        id: 'gallerie',
-        path: Routes.gallerie,
+        id: 'galerie',
+        path: Routes.galerie,
         element: <Layout />,
         children: [
             {
                 index: true,
-                element: <PageGallerie />
+                element: <PageGalerie />
             }
         ],
     },

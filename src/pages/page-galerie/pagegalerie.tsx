@@ -1,10 +1,10 @@
 import {useTitle} from "../../shared/hooks/useTitle/useTitle";
-import "./pagegallerie.css"
-import Gallerie from "../../components/gallerie/gallerie.tsx";
+import "./pagegalerie.css"
+import Galerie from "../../components/galerie/galerie.tsx";
 
-export const PageGallerie = () =>
+export const PageGalerie = () =>
 {
-    useTitle('Gallerie');
+    useTitle('Galerie');
 
     const images = [
         '/exemple/exemple_1.jpg',
@@ -32,7 +32,7 @@ export const PageGallerie = () =>
 
     return (
         <>
-            <Gallerie images={images}/>
+            <Galerie images={images}/>
         </>
     )
 }

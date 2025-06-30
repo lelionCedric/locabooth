@@ -1,11 +1,11 @@
-import './gallerie.css';
+import './galerie.css';
 import {useEffect, useRef, useState} from "react";
 
 interface Props {
     images: string[]; // La prop 'images' est un tableau de chaînes
 }
 
-const Gallerie = ({ images }: Props) => {
+const Galerie = ({ images }: Props) => {
     const [visibleItems, setVisibleItems] = useState<Set<number>>(new Set());
     const [selectedImage, setSelectedImage] = useState<string | undefined>(undefined);
     const containerRef = useRef<HTMLDivElement>(null);
@@ -71,4 +71,4 @@ const Gallerie = ({ images }: Props) => {
     );
 };
 
-export default Gallerie;
+export default Galerie;

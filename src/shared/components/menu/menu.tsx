@@ -29,8 +29,8 @@ const Menu = () => {
                 <div className={location.pathname === "/disponibilite" ? "" : "visible-menu"}>
                     Disponibilités
                 </div>
-                <div className={location.pathname === "/gallerie" ? "" : "visible-menu"}>
-                    Gallerie
+                <div className={location.pathname === "/galerie" ? "" : "visible-menu"}>
+                    Galerie
                 </div>
                 <div className={location.pathname === "/tarif" ? "" : "visible-menu"}>
                     Tarif
@@ -63,11 +63,11 @@ const Menu = () => {
                         </li>
                         <li className="nav__item">
                             <NavLink
-                                to="/gallerie"
+                                to="/galerie"
                                 className={({isActive}) => (isActive ? "nav__link current_menu" : "nav__link")}
                                 onClick={() => closeMenuOnMobile()}
                             >
-                                Gallerie
+                                Galerie
                             </NavLink>
                         </li>
                         <li className="nav__item">
