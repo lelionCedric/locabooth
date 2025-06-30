@@ -40,16 +40,19 @@ const Calendar = () => {
             const isWeekend = dayOfWeek === 5 || dayOfWeek === 6; // Saturday or Sunday
             const filteredList = isWeekend && Array.isArray(reservations) && reservations?.some((item) => item.date.endsWith(`${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2,'0')}`));
 
+            const resa = reservations?.find(item => item.date.endsWith(`${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2,'0')}`));
+
             days.push(
                 <div key={day} className="container">
                     <div
                         key={day}
-                        className={`calendar-day ${filteredList ? 'calendar-day-not-available' : ''} ${isWeekend ? 'weekend' : 'week'}`}
+                        className={`calendar-day ${resa?.latest ? 'calendar-day-one-latest' : filteredList ? 'calendar-day-not-available' : ''} ${isWeekend ? 'weekend' : 'week'}`}
                         onClick={!filteredList && isWeekend ? () => handleOpenModal(day) : undefined}
                     >
                         {day}
                     </div>
-                    {filteredList ? <div key="`${day}`-dispo" className="hovered">Indisponible</div> :
+                    {resa?.latest ? <div key="`${day}`-dispo" className="hovered">Plus que 1 !</div> :
+                        filteredList ? <div key="`${day}`-dispo" className="hovered">Indisponible</div> :
                         <div key="`${day}`-dispo" className="hovered">Disponible</div>}
 
                 </div>

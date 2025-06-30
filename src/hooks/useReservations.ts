@@ -6,6 +6,7 @@ export interface Reservation {
     id: number;
     date: string;
     description: string;
+    latest: boolean;
 }
 
 const useReservations = (month: number, year: number) => {

@@ -107,6 +107,18 @@
     opacity: 50%;
 }
 
+.calendar-day-one-latest {
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.1rem solid #e6e6e6;
+    border-radius: 0.5rem;
+    color: #333;
+    background: #ffb15d;
+    opacity: 50%;
+}
+
 .weekend{
     flex: 1;
 }
