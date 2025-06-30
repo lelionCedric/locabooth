@@ -46,12 +46,12 @@ const Calendar = () => {
                 <div key={day} className="container">
                     <div
                         key={day}
-                        className={`calendar-day ${resa?.latest ? 'calendar-day-one-latest' : filteredList ? 'calendar-day-not-available' : ''} ${isWeekend ? 'weekend' : 'week'}`}
-                        onClick={!filteredList && isWeekend ? () => handleOpenModal(day) : undefined}
+                        className={`calendar-day ${resa?.latest && isWeekend ? 'calendar-day-one-latest' : filteredList ? 'calendar-day-not-available' : ''} ${isWeekend ? 'weekend' : 'week'}`}
+                        onClick={!filteredList && isWeekend || resa?.latest && isWeekend? () => handleOpenModal(day) : undefined}
                     >
                         {day}
                     </div>
-                    {resa?.latest ? <div key="`${day}`-dispo" className="hovered">Plus que 1 !</div> :
+                    {resa?.latest ? <div key="`${day}`-dispo" className="hovered">Plus que 1</div> :
                         filteredList ? <div key="`${day}`-dispo" className="hovered">Indisponible</div> :
                         <div key="`${day}`-dispo" className="hovered">Disponible</div>}
 

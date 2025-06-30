@@ -114,9 +114,9 @@
     justify-content: center;
     border: 0.1rem solid #e6e6e6;
     border-radius: 0.5rem;
-    color: #333;
+    color: #000000;
     background: #ffb15d;
-    opacity: 50%;
+    opacity: 80%;
 }
 
 .weekend{
@@ -143,7 +143,19 @@
     opacity: 50%;
 }
 
+.calendar-day-one-latest:hover {
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.1rem solid #e6e6e6;
+    border-radius: 0.5rem;
+    color: #333;
+    background: #35b120;
+}
+
 .hovered {
+    white-space: nowrap;
     position: absolute;
     transition: bottom .3s;
     background-color: #3f3f44;
@@ -154,7 +166,6 @@
     border-radius: 0.5rem;
     color: #fff;
     top: -100%;
-
 }
 
 @media screen and (max-width: 1150px){
