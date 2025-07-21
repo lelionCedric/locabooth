@@ -31,7 +31,7 @@ const Calendar = () => {
 
         // Add empty cells for days of the previous month
         for (let i = 0; i < firstDayOfMonth; i++) {
-            days.push(<div key={`empty-${i}`} className="empty" />);
+            days.push(<div key={`empty-${i}`} className="calendar-day empty" />);
         }
 
         // Add days of the current month
@@ -42,19 +42,45 @@ const Calendar = () => {
 
             const resa = reservations?.find(item => item.date.endsWith(`${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2,'0')}`));
 
+            // Determine the tooltip message
+            let tooltipMessage = '';
+            let tooltipIcon = '';
+
+            if (resa?.latest && isWeekend) {
+                tooltipMessage = 'Attention : Plus que 1';
+                tooltipIcon = '⚠️';
+            } else if (filteredList) {
+                tooltipMessage = 'Indisponible';
+                tooltipIcon = '✖️';
+            } else if (isWeekend) {
+                tooltipMessage = 'Disponible - Cliquer pour réserver';
+                tooltipIcon = '✓';
+            } else {
+                tooltipMessage = 'Jour de semaine';
+                tooltipIcon = '';
+            }
+
             days.push(
                 <div key={day} className="container">
                     <div
-                        key={day}
-                        className={`calendar-day ${resa?.latest && isWeekend ? 'calendar-day-one-latest' : filteredList ? 'calendar-day-not-available' : ''} ${isWeekend ? 'weekend' : 'week'}`}
-                        onClick={!filteredList && isWeekend || resa?.latest && isWeekend? () => handleOpenModal(day) : undefined}
+                        className={`calendar-day ${
+                            resa?.latest && isWeekend
+                                ? 'calendar-day-one-latest'
+                                : filteredList
+                                    ? 'calendar-day-not-available'
+                                    : 'available'
+                        } ${isWeekend ? 'weekend' : 'week'}`}
+                        onClick={(!filteredList && isWeekend) || (resa?.latest && isWeekend) ? () => handleOpenModal(day) : undefined}
+                        title={tooltipMessage} // Ajout du titre natif pour l'accessibilité
                     >
-                        {day}
+                        <span>{day}</span>
                     </div>
-                    {resa?.latest ? <div key="`${day}`-dispo" className="hovered">Plus que 1</div> :
-                        filteredList ? <div key="`${day}`-dispo" className="hovered">Indisponible</div> :
-                        <div key="`${day}`-dispo" className="hovered">Disponible</div>}
-
+                    <div className="hovered">
+                        {tooltipIcon && <span style={{ marginRight: '0.5rem' }}>{tooltipIcon}</span>}
+                        {resa?.latest && isWeekend ? 'Plus que 1 !' :
+                            filteredList ? 'Indisponible' :
+                                isWeekend ? 'Disponible' : 'Jour de semaine'}
+                    </div>
                 </div>
             );
         }
@@ -99,10 +125,17 @@ const Calendar = () => {
         <>
             <div className="calendar-container">
                 <div className="calendar-header">
-                    <button onClick={handlePreviousMonth}>&lt;</button>
-                    <span>{`${monthNames[currentDate.getMonth()]}`}
-                        <select className="year-select" value={currentDate.getFullYear() ?? ""} onChange={handleChange}>
-
+                    <button onClick={handlePreviousMonth} title="Mois précédent">
+                        <span>‹</span>
+                    </button>
+                    <span className="header-title">
+                        {`${monthNames[currentDate.getMonth()]}`}
+                        <select
+                            className="year-select"
+                            value={currentDate.getFullYear()}
+                            onChange={handleChange}
+                            title="Sélectionner une année"
+                        >
                             {nextYears.map((year) => (
                                 <option key={year} value={year}>
                                     {year}
@@ -110,19 +143,32 @@ const Calendar = () => {
                             ))}
                         </select>
                     </span>
-                    <button onClick={handleNextMonth}>&gt;</button>
+                    <button onClick={handleNextMonth} title="Mois suivant">
+                        <span>›</span>
+                    </button>
                 </div>
                 <div className="calendar-grid">
-                    {dayLabels.map(label => (
-                        <div key={label} className="calendar-day-header">{label}</div>
+                    {dayLabels.map((label) => (
+                        <div key={`desktop-${label}`} className="calendar-day-header">
+                            {label}
+                        </div>
                     ))}
-                    {dayLabelsAbrege.map(label => (
-                        <div key={label} className="calendar-day-header-mobile">{label}</div>
+                    {dayLabelsAbrege.map((label) => (
+                        <div key={`mobile-${label}`} className="calendar-day-header-mobile">
+                            {label}
+                        </div>
                     ))}
                     {renderDays()}
                 </div>
             </div>
-            <ReservationForm annee={currentDate.getFullYear()} mois={monthNames[currentDate.getMonth()]} jour={selectedDay} isOpen={isOpen} handleCloseModal={handleCloseModal} currentDate={currentDate}/>
+            <ReservationForm
+                annee={currentDate.getFullYear()}
+                mois={monthNames[currentDate.getMonth()]}
+                jour={selectedDay}
+                isOpen={isOpen}
+                handleCloseModal={handleCloseModal}
+                currentDate={currentDate}
+            />
         </>
     );
 };

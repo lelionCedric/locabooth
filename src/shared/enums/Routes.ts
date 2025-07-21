@@ -1,6 +1,6 @@
 export const Routes = {
     accueil: "/",
-    disponibilite: "/disponibilite",
+    disponibilites: "/disponibilites",
     galerie: "/galerie",
     tarif: "/tarif",
     avis: "/avis",

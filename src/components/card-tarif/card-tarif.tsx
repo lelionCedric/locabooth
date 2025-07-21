@@ -27,7 +27,7 @@ const CardTarif = () => {
 
             {/* Badge redirigeant vers la page des disponibilités */}
             <div className="tarification-footer">
-                <Link to="/disponibilite">
+                <Link to="/disponibilites">
                     <button className="btn">Voir les Disponibilités</button>
                 </Link>
             </div>

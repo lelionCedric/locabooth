@@ -26,7 +26,7 @@ const Menu = () => {
                 <div className={location.pathname === "/" ? "" : "visible-menu"}>
                     Accueil
                 </div>
-                <div className={location.pathname === "/disponibilite" ? "" : "visible-menu"}>
+                <div className={location.pathname === "/disponibilites" ? "" : "visible-menu"}>
                     Disponibilités
                 </div>
                 <div className={location.pathname === "/galerie" ? "" : "visible-menu"}>
@@ -54,7 +54,7 @@ const Menu = () => {
                         </li>
                         <li className="nav__item">
                             <NavLink
-                                to="/disponibilite"
+                                to="/disponibilites"
                                 className={({isActive}) => (isActive ? "nav__link current_menu" : "nav__link")}
                                 onClick={() => closeMenuOnMobile()}
                             >

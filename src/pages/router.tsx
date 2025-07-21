@@ -25,8 +25,8 @@ export const routes: RouteObject[] = [
         ],
     },
     {
-        id: 'diponibilite',
-        path: Routes.disponibilite,
+        id: 'diponibilites',
+        path: Routes.disponibilites,
         element: <Layout />,
         children: [
             {
