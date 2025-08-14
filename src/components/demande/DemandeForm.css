@@ -64,6 +64,8 @@
     max-width: 28rem;
     z-index: 51;
     animation: modal-appear 0.3s ease-out;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 @keyframes modal-appear {

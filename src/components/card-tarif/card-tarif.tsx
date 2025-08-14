@@ -1,12 +1,16 @@
 import {Link} from "react-router-dom";
 import "./card-tarif.css"
+import useTarif from "../../hooks/useTarif.tsx";
 
 const CardTarif = () => {
+
+    const { tarif } = useTarif();
+
     return (
         <div className="tarification-card">
             {/* En-tête avec le prix */}
             <div className="tarification-header">
-                <h2>70€ / Weekend</h2>
+                <h2>{tarif?.valeur}€ / Weekend</h2>
             </div>
 
             {/* Corps de la carte avec les détails de la location */}

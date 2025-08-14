@@ -3,6 +3,7 @@ import {Reservation} from "../hooks/useReservations.ts";
 import {FormDemande} from "../hooks/useDemande.ts";
 import {Avis} from "../hooks/useAvis.ts";
 import {TokenAvis} from "../hooks/useAvisAdmin.tsx";
+import {Tarif} from "../hooks/useTarif.tsx";
 
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -127,6 +128,12 @@ export const fetchNewToken = async (): Promise<TokenAvis> => {
     }
 };
 
-export const useRecupererTokenAvis = () => {
-
+export const fetchTarif = async (): Promise<Tarif> => {
+    try {
+        const response = await api.get("/api/public/tarif", {} ); // Appel API
+        return response.data;
+    } catch (error) {
+        console.error("Erreur lors de la récupération du tarif :", error);
+        throw error; // Relance l'erreur pour que le composant puisse la gérer
+    }
 };
