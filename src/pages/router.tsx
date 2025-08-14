@@ -11,6 +11,7 @@ import {requireAuth} from "../auth/requireAuth.ts";
 import {Login} from "./login";
 import {Avis} from "./avis";
 import {CreationAvis} from "./avis/creationAvis";
+import Fonctionnement from "./fonctionnement/fonctionnement.tsx";
 
 export const routes: RouteObject[] = [
     {
@@ -32,6 +33,17 @@ export const routes: RouteObject[] = [
             {
                 index: true,
                 element: <Disponibilite />
+            }
+        ],
+    },
+    {
+        id: 'fonctionnement',
+        path: Routes.fonctionnement,
+        element: <Layout />,
+        children: [
+            {
+                index: true,
+                element: <Fonctionnement />
             }
         ],
     },
