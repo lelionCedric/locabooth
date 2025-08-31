@@ -80,7 +80,7 @@ const Menu = () => {
                             </NavLink>
                         </li>
 
-                        <li className="nav__item" hidden>
+                        <li className="nav__item">
                             <NavLink
                                 to="/avis"
                                 className={({isActive}) => (isActive ? "nav__link current_menu" : "nav__link")}
