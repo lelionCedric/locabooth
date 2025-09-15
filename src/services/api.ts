@@ -137,3 +137,13 @@ export const fetchTarif = async (): Promise<Tarif> => {
         throw error; // Relance l'erreur pour que le composant puisse la gérer
     }
 };
+
+export const fetchPhotosGalerie = async (): Promise<string[]> => {
+    try {
+        const response = await api.get("/api/public/galerie/photo", {} ); // Appel API
+        return response.data;
+    } catch (error) {
+        console.error("Erreur lors de la récupération des photos :", error);
+        throw error; // Relance l'erreur pour que le composant puisse la gérer
+    }
+};
