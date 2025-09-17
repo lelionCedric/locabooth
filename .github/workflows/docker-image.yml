@@ -31,4 +31,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: cedriclelion/locabooth:${{ env.TAG }}
+          tags: |
+            cedriclelion/locabooth:${{ env.TAG }}
+            cedriclelion/locabooth:latest
