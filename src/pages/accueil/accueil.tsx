@@ -3,15 +3,23 @@ import Calendar from "../../components/calendar/calendar.tsx";
 import PhotoCarousel from "../../components/photocarousel/photocarousel.tsx";
 import Info from "../../components/info/info.tsx";
 import "./accueil.css"
+import usePhotosGalerie from "../../hooks/usePhotosGalerie.ts";
 
 export const Accueil = () =>
 {
     useTitle('Accueil');
 
+    const { photos } = usePhotosGalerie();
+
     const images: string[] = [];
-    for (let i = 0; i < 3; i++) {
-        const randomNum = Math.floor(Math.random() * 21)+1; // Génère un nombre entre 0 et 21 inclus
-        images.push(`/exemple/exemple_${randomNum}.jpg`);
+    if (photos) {
+        const photosCopy = [...photos]; // copie du tableau pour ne pas modifier l'original
+        console.log(photosCopy.length)
+        for (let i = 0; i < 3 && photosCopy.length > 0; i++) {
+            const randomIndex = Math.floor(Math.random() * photosCopy.length);
+            images.push(photosCopy[randomIndex]);
+            photosCopy.splice(randomIndex, 1); // retire l'élément choisi
+        }
     }
 
     return (
