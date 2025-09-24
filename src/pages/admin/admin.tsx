@@ -1,18 +1,19 @@
 import {useTitle} from "../../shared/hooks/useTitle/useTitle";
 import "./admin.css"
-import ReservationTimeline from "./reservation-timeline/ReservationTimeline.tsx";
 import {useState} from "react";
 import AvisManagement from "./avis/avis-management.tsx";
+import ReservationManagement from "./reservation-managment/ReservationManagment.tsx";
 
-type TabType = "reservations" | "avis";
+type TabType = "timeline" | "reservations" | "avis";
 
 export const Admin = () => {
     useTitle('Admin');
-    const [activeTab, setActiveTab] = useState<TabType>("reservations");
+    const [activeTab, setActiveTab] = useState<TabType>("timeline");
 
     return (
         <div className="admin-container">
             <div className="admin-tabs">
+                
                 <button
                     className={`tab-button ${activeTab === "reservations" ? "active" : ""}`}
                     onClick={() => setActiveTab("reservations")}
@@ -28,8 +29,9 @@ export const Admin = () => {
             </div>
 
             <div className="tab-content">
-                {activeTab === "reservations" && <ReservationTimeline />}
-                {activeTab === "avis" && <AvisManagement />}
+
+                {activeTab === "reservations" && <ReservationManagement/>}
+                {activeTab === "avis" && <AvisManagement/>}
             </div>
         </div>
     );

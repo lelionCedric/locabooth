@@ -36,6 +36,26 @@ export const fetchDates = async (month: number, year: number): Promise<Reservati
     }
 };
 
+export const fetchAllReservations = async (): Promise<Reservation[]> => {
+    try {
+        const response = await api.get("/api/protected/reservations");
+        return response.data;
+    } catch (error) {
+        console.error("Erreur lors de la récupération de toutes les réservations :", error);
+        throw error;
+    }
+};
+
+// Fonction pour supprimer une réservation
+export const deleteReservation = async (reservationId: number): Promise<void> => {
+    try {
+        await api.delete(`/api/protected/reservations/${reservationId}`);
+    } catch (error) {
+        console.error("Erreur lors de la suppression de la réservation :", error);
+        throw error;
+    }
+};
+
 export const sendDemande = async (demande: FormDemande) => {
     try {
         const response = await api.post("/api/public/demande", demande);
