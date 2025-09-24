@@ -148,13 +148,13 @@ const Calendar = () => {
                     </button>
                 </div>
                 <div className="calendar-grid">
-                    {dayLabels.map((label) => (
-                        <div key={`desktop-${label}`} className="calendar-day-header">
+                    {dayLabels.map((label, index) => (
+                        <div key={`desktop-${index}`} className="calendar-day-header">
                             {label}
                         </div>
                     ))}
-                    {dayLabelsAbrege.map((label) => (
-                        <div key={`mobile-${label}`} className="calendar-day-header-mobile">
+                    {dayLabelsAbrege.map((label, index) => (
+                        <div key={`mobile-${index}`} className="calendar-day-header-mobile">
                             {label}
                         </div>
                     ))}
