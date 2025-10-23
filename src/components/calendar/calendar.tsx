@@ -61,7 +61,7 @@ const Calendar = () => {
             }
 
             days.push(
-                <div key={day} className="container">
+                <div key={`${currentDate.getFullYear()}-${currentDate.getMonth()}-${day}`} className="container">
                     <div
                         className={`calendar-day ${
                             resa?.latest && isWeekend
