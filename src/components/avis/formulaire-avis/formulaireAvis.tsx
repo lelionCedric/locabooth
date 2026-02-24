@@ -6,13 +6,12 @@ import useCreerAvis from "../../../hooks/useCreerAvis.tsx";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import {Recommandation} from "./recommandation";
 
 interface AvisFormData {
-    prenom: string;
-    note: number;
-    commentaire: string;
-    recommande: boolean | undefined,
+    prenom: string,
+    note: number,
+    commentaire: string,
+    reco: number,
 }
 
 const validationSchema = Yup.object().shape({
@@ -25,9 +24,11 @@ const validationSchema = Yup.object().shape({
         .max(5, "La note maximum est de 5 étoiles"),
     commentaire: Yup.string()
         .required("Ce champ est obligatoire"),
-    recommande: Yup.boolean().required(
-        "Veuillez indiquer si vous recommandez ou non"
-    ),
+    reco: Yup.number()
+        .nullable()
+        .required("Veuillez sélectionner une recommandation")
+        .min(1, "Veuillez sélectionner au moins 1 étoile")
+        .max(5, "La note maximum est de 5 étoiles"),
 });
 
 export const AvisForm = () => {
@@ -40,7 +41,7 @@ export const AvisForm = () => {
             prenom: "",
             note: undefined,
             commentaire: "",
-            recommande: undefined,
+            reco: undefined,
         },
         resolver: yupResolver(validationSchema),
     });
@@ -53,9 +54,9 @@ export const AvisForm = () => {
 
     const { mutate, isError } = useCreerAvis();
 
-    const handleStarClick = (rating: number) => {
-        watch("note");
-        setValue('note', rating);
+    const handleStarClick = (rating: number, field: string) => {
+        watch(field as keyof AvisFormData);
+        setValue(field as keyof AvisFormData, rating);
     };
 
     const onSubmit = (data: AvisFormData) => {
@@ -75,15 +76,16 @@ export const AvisForm = () => {
 
     };
 
-    const renderStars = () => {
+    const renderStars = (field: string) => {
         return Array.from({ length: 5 }, (_, index) => {
             const starValue = index + 1;
+            const value = getValues(field as keyof AvisFormData) as number;
             return (
                 <button
                     key={starValue}
                     type="button"
-                    className={`star-form ${starValue <= getValues('note') ? 'star-form--active' : ''}`}
-                    onClick={() => handleStarClick(starValue)}
+                    className={`star-form ${starValue <= (value) ? 'star-form--active' : ''}`}
+                    onClick={() => handleStarClick(starValue, field)}
                     aria-label={`Noter ${starValue} étoile${starValue > 1 ? 's' : ''}`}
                 >
                     ★
@@ -115,10 +117,6 @@ export const AvisForm = () => {
             </div>
         );
     }
-
-    const handleRecommendationChange = (value: boolean) => {
-        setValue('recommande', value, { shouldValidate: true });
-    };
 
     return (
         <div className="ajouter-avis-form">
@@ -154,7 +152,7 @@ export const AvisForm = () => {
                             Votre note *
                         </label>
                         <div className="star-rating-form">
-                            {renderStars()}
+                            {renderStars('note')}
                             <span className="rating-text-form">
                             {getValues('note') | 0}/5
                           </span>
@@ -180,12 +178,30 @@ export const AvisForm = () => {
                         />
                     </div>
 
+                    <div className="form-field-form">
+                        <label className="form-label-form">
+                            Nous recommanderiez-vous ? *
+                        </label>
+                        <div className="star-rating-form">
+                            {renderStars('reco')}
+                            <span className="rating-text-form">
 
-                    <Recommandation
-                        value={getValues('recommande')}
-                        onChange={handleRecommendationChange}
-                        error={errors.recommande?.message}
-                    />
+                           <span>{getValues('reco') | 0}/5 </span>
+
+                              {getValues('reco') === 5 ? 'Absolument' :
+                                  getValues('reco') === 4 ? 'Plutôt' :
+                                      getValues('reco') === 3 ? 'Mitigé' :
+                                          getValues('reco') === 2 ? 'Pas nécessairement' :
+                                              (getValues('reco') === 1 || getValues('reco') === 0) ? 'Absolument pas' :
+                                                  ''}
+                            </span>
+                        </div>
+                        {errors.reco && (
+                            <div className="recommendation-error">
+                                {errors.reco.message}
+                            </div>
+                        )}
+                    </div>
 
                     <div className="form-actions-form">
                         <button
