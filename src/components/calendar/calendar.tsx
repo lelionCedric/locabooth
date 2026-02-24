@@ -129,7 +129,7 @@ const Calendar = () => {
                         <span>‹</span>
                     </button>
                     <span className="header-title">
-                        {`${monthNames[currentDate.getMonth()]}`}
+                        <span>{`${monthNames[currentDate.getMonth()]}`}</span>
                         <select
                             className="year-select"
                             value={currentDate.getFullYear()}
