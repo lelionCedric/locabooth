@@ -14,10 +14,15 @@ const Calendar = () => {
     };
 
     const handlePreviousMonth = () => {
+        console.log("date month", monthNames[currentDate.getMonth()] , currentDate.getMonth())
+
         setCurrentDate(prevDate => new Date(prevDate.getFullYear(), prevDate.getMonth() - 1, 1));
     };
 
     const handleNextMonth = () => {
+
+        console.log("date month", monthNames[currentDate.getMonth()] , currentDate.getMonth())
+
         setCurrentDate(prevDate => new Date(prevDate.getFullYear(), prevDate.getMonth() + 1, 1));
     };
 

@@ -36,6 +36,15 @@ export const fetchDates = async (month: number, year: number): Promise<Reservati
     }
 };
 
+export const deleteReservation = async (id: number): Promise<void> => {
+    try {
+        await api.delete(`/api/protected/reservation/${id}`);
+    } catch (error) {
+        console.error("Erreur lors de la suppression de la réservation :", error);
+        throw error;
+    }
+};
+
 export const sendDemande = async (demande: FormDemande) => {
     try {
         const response = await api.post("/api/public/demande", demande);
